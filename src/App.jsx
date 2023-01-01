@@ -1,3 +1,6 @@
+import { Route } from "react-router-dom"
+import { Routes } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 import useStore from "./app/useStore"
 function App() {
 
@@ -5,7 +8,13 @@ function App() {
   return (
     <div data-theme={theme} className="h-screen">
       <Navbar />
-      <Content />
+      <Routes>
+        <Route index element={<Content />} />
+        <Route path="about" element={<About />} />
+        <Route path="projects" element={<Projects />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+      {/* <Content /> */}
       {/* <Footer /> */}
     </div>
   )
@@ -24,16 +33,16 @@ function Navbar() {
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
           </label>
           <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-            <li><a>Home</a></li>
-            <li><a>Projects</a></li>
-            <li><a>About</a></li>
+            <li><NavLink to='/'>Home</NavLink></li>
+            <li><NavLink to='projects'>Projects</NavLink></li>
+            <li><NavLink to='about'>About</NavLink></li>
           </ul>
         </div>
         <div className="hidden md:inline flex-none">
           <ul className="menu menu-horizontal p-0">
-            <li><a>Home</a></li>
-            <li><a>Projects</a></li>
-            <li><a>About</a></li>
+            <li><NavLink to='/'>Home</NavLink></li>
+            <li><NavLink to='projects'>Projects</NavLink></li>
+            <li><NavLink to='about'>About</NavLink></li>
           </ul>
         </div>
       </div>
@@ -65,6 +74,50 @@ function Content() {
             <p className="py-6">We are an entity that builds Apps that really Slap.
               We promise, this will be interesting!</p>
             <button className="btn btn-primary">Get Started</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function About() {
+  return (
+    <div className="h-[calc(100vh_-_64px)]">
+      <div className="hero min-h-full bg-base-200">
+        <div className="hero-content text-center">
+          <div className="max-w-md">
+            <h1 className="text-5xl font-bold">About</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function Projects() {
+  return (
+    <div className="h-[calc(100vh_-_64px)]">
+      <div className="hero min-h-full bg-base-200">
+        <div className="hero-content text-center">
+          <div className="max-w-md">
+            <h1 className="text-5xl font-bold">Projects</h1>
+            <p className="py-6"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function NotFound() {
+  return (
+    <div className="h-[calc(100vh_-_64px)]">
+      <div className="hero min-h-full bg-base-200">
+        <div className="hero-content text-center">
+          <div className="max-w-md">
+            <h1 className="text-5xl font-bold">404</h1>
+            <p className="py-6"></p>
           </div>
         </div>
       </div>
